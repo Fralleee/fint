@@ -4,4 +4,7 @@ Collection of UI components for React
 ## Todo
 - Button
 - Modal
-- More?
+- Checkbox
+- Dropdown
+- Input
+- Nav
