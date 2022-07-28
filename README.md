@@ -1,2 +1,2 @@
-# -fralle-ui
+# fralle-ui
 Collection of UI components for React
