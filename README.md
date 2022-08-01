@@ -14,4 +14,6 @@ Collection of UI components for React
 ## Todo
 
 - Add support for colors schemas
+  - Add support for variants: primary, secondary, e.t.c.
 - Actually export the correct components
+

@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { base, light } from "styles/themes"
 
 // #region styled
 const StyledButton = styled.button`
@@ -6,13 +7,13 @@ const StyledButton = styled.button`
   letter-spacing: inherit;
   line-height: 1.5;
 
-  border: 2px solid rgba(0 0 0 / 15%);
+  border: none;
   border-radius: 0.5em;
 
-  background: white;
-  color: black;
+  background: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.text};
 
-  box-shadow: 0 0 0 0 rgba(0 0 0 / 10%);
+  box-shadow: 0 0 0 2px ${props => props.theme.colors.boxShadow};
   text-shadow: none;
   transition: none;
 
@@ -35,13 +36,13 @@ const StyledButton = styled.button`
       outline-offset: 5px;
     }
     &:hover {
-      box-shadow: 0 0 0 0.5em rgba(0 0 0 / 10%);
+      box-shadow: 0 0 0 0.5em ${props => props.theme.colors.boxShadow};
     }
   }
 
   &:disabled {
     background-color: transparent;
-    color: rgba(100 100 100 / 50%);
+    color: ${props => props.theme.colors.text};
     cursor: not-allowed;
   }
 
@@ -52,38 +53,29 @@ const StyledButton = styled.button`
     stroke-linejoin: round;
   }
 
-  @media (prefers-color-scheme: dark) {
-    background: #333;
-    color: white;
-    outline-color: white;
-    box-shadow: 0 0 0 0 rgba(255 255 255 / 10%);
-
-    &:not(:active):not(:disabled) {
-      &:hover {
-        box-shadow: 0 0 0 0.5em rgba(255 255 255 / 10%);
-      }
-    }
-
-    &:disabled {
-      background-color: transparent;
-      color: rgba(200 200 200 / 50%);
-      cursor: not-allowed;
-    }
-  }
-
   @media (prefers-reduced-motion: no-preference) {
     transition: box-shadow 150ms ease, outline-offset 150ms ease;
   }
 `
 
+StyledButton.defaultProps = {
+  theme: {
+    ...base,
+    colors: light
+  }
+}
+
 // #endregion
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode
+  theme?: object
 }
 
-const Button = ({ children, ...rest }: ButtonProps) => {
-  return <StyledButton {...rest}>{children}</StyledButton>
-}
+const Button = ({ children, theme, ...rest }: ButtonProps) => (
+  <StyledButton theme={theme} {...rest}>
+    {children}
+  </StyledButton>
+)
 
 export default Button

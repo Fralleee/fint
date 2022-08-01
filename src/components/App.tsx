@@ -1,26 +1,21 @@
 import styled from "styled-components"
 import Button from "./Button/Button"
+import Section from "./Section"
 
 // #region styled
 const Header = styled.header`
   text-align: center;
-  h1 {
-    font-size: 5rem;
-  }
 `
 
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 50px 0;
+const Title = styled.h1`
+  color: ${props => props.theme.colors.text};
+  font-size: 5rem;
+`
 
-  article,
-  form {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
+const Article = styled.article`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 `
 // #endregion
 
@@ -32,9 +27,8 @@ const App = () => {
       </Header>
 
       <Section>
-        <h2>Button</h2>
-        <p>Unified modern style, visual differences reinforce purpose.</p>
-        <article className="fluid-flex">
+        <Title>Button</Title>
+        <Article>
           <Button>Default</Button>
           <Button>
             <svg viewBox="0 0 24 24" stroke="currentColor" width="24" height="24" aria-hidden="true">
@@ -46,29 +40,8 @@ const App = () => {
           <Button type="button">Type Button</Button>
           <Button type="reset">Reset</Button>
           <Button disabled>Disabled</Button>
-          <Button className="btn-custom">Custom</Button>
-        </article>
-
-        <h2>
-          When inside a <code>&#60;form&#62;</code>
-        </h2>
-        <p>
-          <span className="red-squigly">Untyped Buttons</span> visually match their new contextual default of type submit.
-        </p>
-
-        <form action="" className="fluid-flex">
-          <Button>Default</Button>
-          <Button>
-            Icon <span data-icon="cloud"></span>
-          </Button>
-          <Button type="submit">Submit</Button>
-          <Button type="button">Type Button</Button>
-          <Button type="reset">Reset</Button>
-          <Button disabled>Disabled</Button>
-          <Button className="btn-custom btn-large" type="button">
-            Large Custom
-          </Button>
-        </form>
+          <Button theme={{ colors: { text: "#ff5555" } }}>Custom</Button>
+        </Article>
       </Section>
     </main>
   )
