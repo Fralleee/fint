@@ -1,0 +1,27 @@
+@import "styles/easings.scss";
+@import "styles/variables.scss";
+
+html {
+  box-sizing: border-box;
+  block-size: 100%;
+  font-family: system-ui, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f9fafb;
+
+  @media (prefers-color-scheme: dark) {
+    background: #001020;
+    color: white;
+  }
+}
+
