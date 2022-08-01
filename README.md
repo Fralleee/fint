@@ -1,4 +1,4 @@
-# fralle-ui
+# fint
 Collection of UI components for React
 
 ## Todo
