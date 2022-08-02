@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 import { base, light } from '../styles/themes';
 
-// #region styled
 export const StyledButton = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   gap: 1ch;
-  font: inherit;
   letter-spacing: inherit;
-  line-height: 1.5;
   border: none;
   border-radius: 0.5em;
   font-weight: 700;
@@ -52,7 +49,6 @@ export const StyledButton = styled.button`
     transition: box-shadow 150ms ease, outline-offset 150ms ease;
   }
 `;
-// #endregion
 
 StyledButton.defaultProps = {
   theme: {
