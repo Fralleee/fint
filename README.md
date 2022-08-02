@@ -13,10 +13,5 @@ Collection of UI components for React
 
 ## Todo
 
-- Add storybook
-- Add support for variants: primary, secondary, e.t.c.
-  - Add typescript support for these
-- Actually export the correct components
-- Netlify
-- Try to use in project
+- Button: Add support for variants: primary, secondary, e.t.c. with typescript support
 
