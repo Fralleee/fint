@@ -14,4 +14,3 @@ Collection of UI components for React
 ## Todo
 
 - Button: Add support for variants: primary, secondary, e.t.c. with typescript support
-
