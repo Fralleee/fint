@@ -13,7 +13,10 @@ Collection of UI components for React
 
 ## Todo
 
-- Add support for colors schemas
-  - Add support for variants: primary, secondary, e.t.c.
+- Add storybook
+- Add support for variants: primary, secondary, e.t.c.
+  - Add typescript support for these
 - Actually export the correct components
+- Netlify
+- Try to use in project
 
