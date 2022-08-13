@@ -1,8 +1,59 @@
-import styled from 'styled-components';
-import { base, light } from '../styles/themes';
+import styled, { css } from 'styled-components';
+import { transparentize } from 'polished';
+import { ButtonProps } from './Button';
+import {
+  BOX_SHADOW_DARK,
+  BOX_SHADOW_LIGHT,
+  DANGER_COLOR,
+  DANGER_TEXT_COLOR,
+  DISABLED_OPACITY,
+  PRIMARY_COLOR,
+  PRIMARY_TEXT_COLOR,
+  SECONDARY_COLOR,
+  SECONDARY_TEXT_COLOR,
+  SUCCESS_COLOR,
+  SUCCESS_TEXT_COLOR,
+  WARNING_COLOR,
+  WARNING_TEXT_COLOR
+} from '../utils/styles';
 
-export const StyledButton = styled.button`
-  display: inline-flex;
+const sizes = {
+  small: 'padding: 0.5rem 1rem; font-size: 0.8rem;',
+  medium: 'padding: 0.75rem 1.5rem; font-size: 1rem;',
+  large: 'padding: 1rem 2rem; font-size: 1.25rem;'
+};
+
+const colors = {
+  primary: [PRIMARY_COLOR, PRIMARY_TEXT_COLOR],
+  secondary: [SECONDARY_COLOR, SECONDARY_TEXT_COLOR],
+  danger: [DANGER_COLOR, DANGER_TEXT_COLOR],
+  success: [SUCCESS_COLOR, SUCCESS_TEXT_COLOR],
+  warning: [WARNING_COLOR, WARNING_TEXT_COLOR]
+};
+
+const colorStyles = (props: ButtonProps) => {
+  if (!props.variant) return;
+
+  const [background, color] = colors[props.variant];
+  return css`
+    background-color: ${background};
+    color: ${color};
+    box-shadow: 0 0 0 0 ${transparentize(0.5, background)};
+    outline-color: ${background};
+
+    &:not(:active):not(:disabled) {
+      &:focus-visible {
+        outline-offset: 5px;
+        box-shadow: 0 0 0 0.5em ${transparentize(0.75, background)};
+      }
+      &:hover {
+        box-shadow: 0 0 0 0.5em ${transparentize(0.75, background)};
+      }
+    }
+  `;
+};
+
+export const StyledButton = styled.button<ButtonProps>`
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -11,31 +62,26 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 0.5em;
   font-weight: 700;
-  padding-block: 1rem;
-  padding-inline: 1rem;
   text-shadow: none;
   transition: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 
-  background: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.text};
-  box-shadow: 0 0 0 2px ${props => props.theme.colors.boxShadow};
+  display: ${props => (props.fullWidth ? 'flex' : 'inline-flex')};
+  width: ${props => props.fullWidth && '100%'};
+  ${props => props.size && sizes[props.size]}
+  ${colorStyles};
 
   &:not(:active):not(:disabled) {
     &:focus-visible {
       outline-offset: 5px;
     }
-    &:hover {
-      box-shadow: 0 0 0 0.5em ${props => props.theme.colors.boxShadow};
-    }
   }
 
   &:disabled {
-    background-color: transparent;
-    color: ${props => props.theme.colors.text};
-    cursor: not-allowed;
+    cursor: inherit;
+    opacity: ${DISABLED_OPACITY};
   }
 
   & > svg {
@@ -49,10 +95,3 @@ export const StyledButton = styled.button`
     transition: box-shadow 150ms ease, outline-offset 150ms ease;
   }
 `;
-
-StyledButton.defaultProps = {
-  theme: {
-    ...base,
-    colors: light
-  }
-};

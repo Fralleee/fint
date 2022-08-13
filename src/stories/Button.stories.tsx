@@ -10,3 +10,10 @@ export default {
 const Template: Story = args => <Button {...args}>Button</Button>;
 
 export const Default = Template.bind({});
+
+Default.argTypes = {
+  variant: { control: { type: 'select', options: ['primary', 'secondary', 'danger', 'success', 'warning'] } },
+  size: { control: { type: 'select', options: ['small', 'medium', 'large'] } },
+  fullWidth: { control: 'boolean' },
+  disabled: { control: 'boolean' }
+};

@@ -44,5 +44,8 @@
     "react": ">=16.12.0",
     "react-dom": ">=16.12.0",
     "styled-components": "^5.3.5"
+  },
+  "dependencies": {
+    "polished": "^4.2.2"
   }
 }
